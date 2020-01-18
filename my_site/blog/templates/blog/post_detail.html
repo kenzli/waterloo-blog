@@ -1,0 +1,21 @@
+{% extends "blog/main.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="card row mt-4">
+            <div class="col-lg pl-5 pr-5">
+                <h2 class="mt-4">{{ object.title }}</h2>
+                <p class="lead">By {{ object.author }} ({{ object.author.first_name }} {{ object.author.last_name }})</p>
+                <hr>
+                    <p>Posted on {{ object.date|date:"M j, Y" }}</p>
+                    {% if object.author == user %}
+                        <a class="btn btn-info btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Edit Post</a>
+                    {% endif %}
+                <hr>
+                <!-- Post Content -->
+                <p>{{ object.content|linebreaks }}</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
